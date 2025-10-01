@@ -715,7 +715,6 @@ M.util.help_popups.setup(Y);
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    /* Tapeta lub tło strony pozostaje nienaruszone */
   }
 
   /* Pasek u góry */
@@ -725,7 +724,7 @@ M.util.help_popups.setup(Y);
     left: 0;
     width: 100%;
     height: 50px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.7);
     color: #fff;
     display: flex;
     align-items: center;
@@ -735,15 +734,16 @@ M.util.help_popups.setup(Y);
     z-index: 9999;
   }
 
-  /* Wysuwany panel */
+  /* Wysuwany panel sklepu */
   .shop-panel {
     position: fixed;
-    top: 50px; /* zaraz pod paskiem */
+    top: 50px; /* pod paskiem */
     left: 0;
     width: 100%;
     max-height: 0;
-    overflow: hidden;
-    background: rgba(255,255,255,0.95); /* lekko przezroczyste, żeby nie zasłaniało tła za bardzo */
+    overflow-y: auto;
+    background: #000; /* czarne tło */
+    color: #fff; /* białe napisy */
     transition: max-height 0.3s ease;
     z-index: 9998;
     padding: 0 10px;
@@ -766,6 +766,7 @@ M.util.help_popups.setup(Y);
     height: 80px;
     object-fit: cover;
     margin-right: 10px;
+    border: 1px solid #fff; /* opcjonalnie ramka */
   }
 
   .product-info {
@@ -779,7 +780,7 @@ M.util.help_popups.setup(Y);
 
   .product-desc {
     font-size: 13px;
-    color: #333;
+    color: #fff;
   }
 
   .main-content {
