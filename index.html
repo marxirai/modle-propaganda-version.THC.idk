@@ -715,7 +715,7 @@ M.util.help_popups.setup(Y);
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    /* tło strony pozostaje nienaruszone */
+    /* Tapeta lub tło strony pozostaje nienaruszone */
   }
 
   /* Pasek u góry */
@@ -725,7 +725,7 @@ M.util.help_popups.setup(Y);
     left: 0;
     width: 100%;
     height: 50px;
-    background: rgba(0,0,0,0.8); /* półprzezroczyste czarne tło paska */
+    background: rgba(0,0,0,0.5);
     color: #fff;
     display: flex;
     align-items: center;
@@ -735,17 +735,16 @@ M.util.help_popups.setup(Y);
     z-index: 9999;
   }
 
-  /* Wysuwany panel sklepu */
+  /* Wysuwany panel */
   .shop-panel {
     position: fixed;
-    top: 50px; /* pod paskiem */
+    top: 50px; /* zaraz pod paskiem */
     left: 0;
     width: 100%;
     max-height: 0;
-    overflow-y: auto;
-    background: #000; /* solidne czarne tło panelu */
-    color: #fff;      /* białe napisy */
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+    background: rgba(255,255,255,0.95); /* lekko przezroczyste, żeby nie zasłaniało tła za bardzo */
+    transition: max-height 0.3s ease;
     z-index: 9998;
     padding: 0 10px;
     box-sizing: border-box;
@@ -767,7 +766,6 @@ M.util.help_popups.setup(Y);
     height: 80px;
     object-fit: cover;
     margin-right: 10px;
-    border: 1px solid #fff; /* biała ramka dla kontrastu */
   }
 
   .product-info {
@@ -781,7 +779,7 @@ M.util.help_popups.setup(Y);
 
   .product-desc {
     font-size: 13px;
-    color: #fff;
+    color: #333;
   }
 
   .main-content {
