@@ -715,8 +715,7 @@ M.util.help_popups.setup(Y);
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: url('TWOJA_TAPETA_URL') no-repeat center center fixed; /* wstaw tu swój obrazek */
-    background-size: cover;
+    /* Nie zmieniamy tła! Tapeta pozostaje */
   }
 
   /* Wysuwany sklep */
@@ -726,13 +725,12 @@ M.util.help_popups.setup(Y);
     left: -220px; /* początkowo ukryty */
     width: 220px;
     height: 100%;
-    background: rgba(17, 17, 17, 0.8); /* lekko przeźroczyste */
-    color: #fff;
+    background: rgba(255, 255, 255, 0); /* całkowicie przezroczyste */
+    color: #000; /* czarny tekst, widoczny na tle */
     overflow-y: auto;
     transition: left 0.3s;
     z-index: 9999;
     padding: 20px 10px;
-    backdrop-filter: blur(5px); /* lekko rozmywa tło pod spodem */
   }
 
   .shop-sidebar.active {
@@ -763,7 +761,6 @@ M.util.help_popups.setup(Y);
 
   .product-desc {
     font-size: 13px;
-    color: #ddd;
     min-height: 40px;
   }
 
@@ -772,7 +769,7 @@ M.util.help_popups.setup(Y);
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background: rgba(17,17,17,0.9);
+    background: rgba(0,0,0,0.5); /* lekko półprzezroczysty, żeby był widoczny */
     color: #fff;
     padding: 10px 15px;
     cursor: pointer;
@@ -826,3 +823,4 @@ function toggleShop() {
 
 </body>
 </html>
+
