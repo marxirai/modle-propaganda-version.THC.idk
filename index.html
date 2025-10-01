@@ -705,52 +705,62 @@ M.util.help_popups.setup(Y);
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Anti-Ukrainian.svg/1200px-Anti-Ukrainian.svg.png"
      alt="Nowy obrazek na wierzchu"
      style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 9999; max-width: 300px; height: auto;">
-<!-- --- START: Shop sidebar --- -->
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
+    transition: margin-left 0.3s;
   }
 
-  /* Sidebar */
+  /* Wysuwany sidebar */
   .shop-sidebar {
     position: fixed;
-    left: 0;
     top: 0;
-    width: 220px;
+    left: 0;
+    width: 60px; /* zwinięty */
     height: 100%;
     background: #111;
     color: #fff;
-    padding: 16px 12px;
-    box-sizing: border-box;
-    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.3s;
+    padding-top: 20px;
     z-index: 9999;
   }
 
-  .shop-title {
+  .shop-sidebar.expanded {
+    width: 220px; /* rozwinięty */
+  }
+
+  .shop-sidebar h2 {
     font-size: 20px;
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
+    display: none;
+  }
+
+  .shop-sidebar.expanded h2 {
+    display: block;
   }
 
   .shop-product {
-    margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .shop-sidebar.expanded .shop-product {
+    display: block;
   }
 
   .shop-product img {
     width: 100%;
     max-width: 180px;
-    height: auto;
-    display: block;
-    margin: 0 auto 8px;
     border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    margin-bottom: 4px;
   }
 
   .product-title {
-    font-size: 14px;
     font-weight: 600;
     margin-bottom: 4px;
   }
@@ -758,51 +768,70 @@ M.util.help_popups.setup(Y);
   .product-desc {
     font-size: 13px;
     color: #ddd;
-    min-height: 60px; /* zostawia miejsce na opis */
+    min-height: 60px;
   }
 
-  /* Główna zawartość strony */
+  /* Przycisk do rozwijania */
+  .toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 10000;
+  }
+
   .main-content {
-    margin-left: 240px; /* szerokość sidebar + odstęp */
+    margin-left: 60px; /* początkowa szerokość sidebar */
     padding: 20px;
+    transition: margin-left 0.3s;
   }
 
-  @media (max-width: 700px) {
-    .shop-sidebar {
-      position: relative;
-      width: 100%;
-      height: auto;
-    }
-    .main-content {
-      margin-left: 0;
-    }
+  .main-content.shifted {
+    margin-left: 220px; /* po rozwinięciu */
   }
 </style>
 
-<aside class="shop-sidebar" aria-label="Shop sidebar">
-  <h2 class="shop-title">Shop</h2>
+<aside class="shop-sidebar" id="sidebar">
+  <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div>
+  <h2>Shop</h2>
 
   <div class="shop-product">
-    <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Heckler-Koch-300x300.jpg" alt="Produkt 1 — Heckler-Koch">
+    <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Heckler-Koch-300x300.jpg" alt="Produkt 1">
     <div class="product-title">Produkt 1</div>
     <p class="product-desc">Tu wpisz opis produktu 1.</p>
   </div>
 
   <div class="shop-product">
-    <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Smith-Wesson-300x300.jpg" alt="Produkt 2 — Smith & Wesson">
+    <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Smith-Wesson-300x300.jpg" alt="Produkt 2">
     <div class="product-title">Produkt 2</div>
     <p class="product-desc">Tu wpisz opis produktu 2.</p>
   </div>
 
   <div class="shop-product">
-    <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Hi-Point-.40-SW-Carbine.jpg" alt="Produkt 3 — Hi-Point">
+    <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Hi-Point-.40-SW-Carbine.jpg" alt="Produkt 3">
     <div class="product-title">Produkt 3</div>
     <p class="product-desc">Tu wpisz opis produktu 3.</p>
   </div>
 </aside>
 
-<div class="main-content">
+<div class="main-content" id="main">
   <h1>Twoja strona</h1>
   <p>Tu idzie pozostała zawartość strony.</p>
 </div>
-<!-- --- END: Shop sidebar --- -->
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main');
+    sidebar.classList.toggle('expanded');
+    main.classList.toggle('shifted');
+  }
+</script>
