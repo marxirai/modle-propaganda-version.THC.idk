@@ -705,134 +705,133 @@ M.util.help_popups.setup(Y);
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Anti-Ukrainian.svg/1200px-Anti-Ukrainian.svg.png"
      alt="Nowy obrazek na wierzchu"
      style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 9999; max-width: 300px; height: auto;">
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sklep</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #111;
+    background: #f0f0f0;
   }
 
-  /* Sidebar - zawsze przyklejony w lewym rogu */
+  /* Wysuwany sklep */
   .shop-sidebar {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 60px; /* zwinięty */
+    left: -220px; /* początkowo ukryty */
+    width: 220px;
     height: 100%;
     background: #111;
     color: #fff;
-    overflow-x: hidden;
-    transition: width 0.3s;
-    padding-top: 20px;
+    overflow-y: auto;
+    transition: left 0.3s;
     z-index: 9999;
+    padding: 20px 10px;
   }
 
-  .shop-sidebar.expanded {
-    width: 220px; /* rozwinięty */
+  .shop-sidebar.active {
+    left: 0; /* wysunięty */
   }
 
   .shop-sidebar h2 {
-    font-size: 20px;
-    font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    display: none;
-  }
-
-  .shop-sidebar.expanded h2 {
-    display: block;
+    font-size: 22px;
   }
 
   .shop-product {
-    text-align: center;
     margin-bottom: 20px;
-    display: none;
-  }
-
-  .shop-sidebar.expanded .shop-product {
-    display: block;
+    text-align: center;
   }
 
   .shop-product img {
     width: 100%;
     max-width: 180px;
-    border-radius: 4px;
-    margin-bottom: 4px;
+    border-radius: 5px;
+    margin-bottom: 5px;
   }
 
   .product-title {
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-weight: bold;
   }
 
   .product-desc {
     font-size: 13px;
     color: #ddd;
-    min-height: 60px;
+    min-height: 40px;
   }
 
-  /* Przycisk do rozwijania */
-  .toggle-btn {
-    position: absolute;
-    top: 10px;
-    right: -15px;
-    width: 30px;
-    height: 30px;
-    background: #222;
+  /* Przycisk wysuwania u dołu */
+  .shop-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #111;
     color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 5px;
     font-weight: bold;
     z-index: 10000;
   }
 
+  /* Main content przesuwany przy sidebar */
   .main-content {
-    margin-left: 60px; /* początkowa szerokość sidebar */
     padding: 20px;
     transition: margin-left 0.3s;
+    margin-left: 0;
   }
 
   .main-content.shifted {
-    margin-left: 220px; /* po rozwinięciu */
+    margin-left: 220px;
   }
 </style>
+</head>
+<body>
 
-<aside class="shop-sidebar" id="sidebar">
-  <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div>
+<div class="shop-sidebar" id="sidebar">
   <h2>Shop</h2>
 
   <div class="shop-product">
     <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Heckler-Koch-300x300.jpg" alt="Produkt 1">
     <div class="product-title">Produkt 1</div>
-    <p class="product-desc">Tu wpisz opis produktu 1.</p>
+    <p class="product-desc">Opis produktu 1.</p>
   </div>
 
   <div class="shop-product">
     <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Smith-Wesson-300x300.jpg" alt="Produkt 2">
     <div class="product-title">Produkt 2</div>
-    <p class="product-desc">Tu wpisz opis produktu 2.</p>
+    <p class="product-desc">Opis produktu 2.</p>
   </div>
 
   <div class="shop-product">
     <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Hi-Point-.40-SW-Carbine.jpg" alt="Produkt 3">
     <div class="product-title">Produkt 3</div>
-    <p class="product-desc">Tu wpisz opis produktu 3.</p>
+    <p class="product-desc">Opis produktu 3.</p>
   </div>
-</aside>
+</div>
 
 <div class="main-content" id="main">
   <h1>Twoja strona</h1>
-  <p>Tu idzie pozostała zawartość strony.</p>
+  <p>Tu idzie zawartość strony.</p>
 </div>
 
+<div class="shop-toggle" onclick="toggleShop()">Sklep</div>
+
 <script>
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const main = document.getElementById('main');
-    sidebar.classList.toggle('expanded');
-    main.classList.toggle('shifted');
-  }
+function toggleShop() {
+  const sidebar = document.getElementById('sidebar');
+  const main = document.getElementById('main');
+  sidebar.classList.toggle('active');
+  main.classList.toggle('shifted');
+}
 </script>
+
+</body>
+</html>
+
 
