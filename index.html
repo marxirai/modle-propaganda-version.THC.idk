@@ -715,7 +715,8 @@ M.util.help_popups.setup(Y);
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f0f0f0;
+    background: url('TWOJA_TAPETA_URL') no-repeat center center fixed; /* wstaw tu swój obrazek */
+    background-size: cover;
   }
 
   /* Wysuwany sklep */
@@ -725,12 +726,13 @@ M.util.help_popups.setup(Y);
     left: -220px; /* początkowo ukryty */
     width: 220px;
     height: 100%;
-    background: #111;
+    background: rgba(17, 17, 17, 0.8); /* lekko przeźroczyste */
     color: #fff;
     overflow-y: auto;
     transition: left 0.3s;
     z-index: 9999;
     padding: 20px 10px;
+    backdrop-filter: blur(5px); /* lekko rozmywa tło pod spodem */
   }
 
   .shop-sidebar.active {
@@ -770,7 +772,7 @@ M.util.help_popups.setup(Y);
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background: #111;
+    background: rgba(17,17,17,0.9);
     color: #fff;
     padding: 10px 15px;
     cursor: pointer;
@@ -779,15 +781,9 @@ M.util.help_popups.setup(Y);
     z-index: 10000;
   }
 
-  /* Main content przesuwany przy sidebar */
+  /* Main content */
   .main-content {
     padding: 20px;
-    transition: margin-left 0.3s;
-    margin-left: 0;
-  }
-
-  .main-content.shifted {
-    margin-left: 220px;
   }
 </style>
 </head>
@@ -799,23 +795,23 @@ M.util.help_popups.setup(Y);
   <div class="shop-product">
     <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Heckler-Koch-300x300.jpg" alt="Produkt 1">
     <div class="product-title">Produkt 1</div>
-    <p class="product-desc">Opis produktu 1.</p>
+    <p class="product-desc">Tu wpisz opis produktu 1.</p>
   </div>
 
   <div class="shop-product">
     <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Smith-Wesson-300x300.jpg" alt="Produkt 2">
     <div class="product-title">Produkt 2</div>
-    <p class="product-desc">Opis produktu 2.</p>
+    <p class="product-desc">Tu wpisz opis produktu 2.</p>
   </div>
 
   <div class="shop-product">
     <img src="https://blackmarket-gun.com/wp-content/uploads/2018/08/Hi-Point-.40-SW-Carbine.jpg" alt="Produkt 3">
     <div class="product-title">Produkt 3</div>
-    <p class="product-desc">Opis produktu 3.</p>
+    <p class="product-desc">Tu wpisz opis produktu 3.</p>
   </div>
 </div>
 
-<div class="main-content" id="main">
+<div class="main-content">
   <h1>Twoja strona</h1>
   <p>Tu idzie zawartość strony.</p>
 </div>
@@ -824,14 +820,9 @@ M.util.help_popups.setup(Y);
 
 <script>
 function toggleShop() {
-  const sidebar = document.getElementById('sidebar');
-  const main = document.getElementById('main');
-  sidebar.classList.toggle('active');
-  main.classList.toggle('shifted');
+  document.getElementById('sidebar').classList.toggle('active');
 }
 </script>
 
 </body>
 </html>
-
-
